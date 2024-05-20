@@ -1,0 +1,2680 @@
+## Question 1: 
+
+**What is the average duration from order placement to shipment across different product categories, segmented by customer regions and order volume?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "order",
+"table_description": "Stores detailed records of customer orders",
+"primary_key_column": [
+"order_id",
+"order_item_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for the order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "ship_date",
+"description": "Date when the order was shipped",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "country",
+"description": "Country of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "region",
+"description": "Region of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_category",
+"description": "Category of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "order",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+},
+{
+"FromTable": "order",
+"FromColumn": [
+"order_id"
+],
+"ToTable": "order_details",
+"ToColumn": [
+"order_id"
+]
+},
+{
+"FromTable": "order_details",
+"FromColumn": [
+"product_id"
+],
+"ToTable": "product",
+"ToColumn": [
+"product_id"
+]
+}
+]
+```
+
+## Question 2:
+
+**How can I determine the peak shopping hours by analyzing the times at which customers complete their purchases on our e-commerce platform?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "order",
+"table_description": "Stores detailed records of customer orders",
+"primary_key_column": [
+"order_id",
+"order_item_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for the order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "order_time",
+"description": "Time when the order was placed",
+"data_type": "TIME",
+"format": "HH:MM:SS",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+* No additional relationships needed.
+## Question 3:
+
+**Can you help analyze the average duration between initial and subsequent purchases by customers, focusing on their purchase patterns and engagement levels?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "order",
+"table_description": "Stores detailed records of customer orders",
+"primary_key_column": [
+"order_id",
+"order_item_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for the order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+* No additional relationships needed.
+
+
+## Question 4:
+
+**How can I determine the impact of website downtime on sales revenue and customer satisfaction by analyzing the timestamps from server logs?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "server_logs",
+"table_description": "Stores server logs with timestamps",
+"primary_key_column": [
+"log_id"
+],
+"columns": [
+{
+"name": "log_id",
+"description": "Unique identifier for log entry",
+"data_type": "INTEGER",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "timestamp",
+"description": "Timestamp of the log event",
+"data_type": "TIMESTAMP",
+"format": "YYYY-MM-DD HH:MM:SS",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "event_type",
+"description": "Type of event logged",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "total_price",
+"description": "Total price of the order",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+},
+{
+"table_name": "customer_service_fact",
+"table_description": "Tracks all customer service interactions",
+"primary_key_column": [
+"ticket_id",
+"customer_id"
+],
+"columns": [
+{
+"name": "ticket_id",
+"description": "Unique identifier for the ticket",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "created_date",
+"description": "Date the ticket was created",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "satisfaction_rating",
+"description": "Customer satisfaction rating",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+* No additional relationships needed.
+
+## Question 5: 
+
+**How can we analyze customer purchases, focusing on geographic and product preferences, during promotional periods to enhance sales strategies and improve customer satisfaction?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "country",
+"description": "Country of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "region",
+"description": "Region of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_category",
+"description": "Category of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for each customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "total_price",
+"description": "Total price of the order",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "promo_id",
+"description": "Promotion identifier applied to the order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+},
+{
+"table_name": "customer_service_fact",
+"table_description": "Tracks all customer service interactions",
+"primary_key_column": [
+"ticket_id",
+"customer_id"
+],
+"columns": [
+{
+"name": "ticket_id",
+"description": "Unique identifier for the ticket",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "created_date",
+"description": "Date the ticket was created",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "satisfaction_rating",
+"description": "Customer satisfaction rating",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+},
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"product_id"
+],
+"ToTable": "product",
+"ToColumn": [
+"product_id"
+]
+},
+{
+"FromTable": "customer_service_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+}
+]
+```
+
+
+
+## Question 6:
+
+**Can you analyze the duration between the initial and most recent session for each customer to assess engagement trends over time?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "browsing_history_0",
+"table_description": "Tracks user browsing sessions and activities",
+"primary_key_column": [
+"session_id",
+"user_id"
+],
+"columns": [
+{
+"name": "session_id",
+"description": "Unique identifier for the session",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "user_id",
+"description": "Unique identifier for the user",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "session_start_time",
+"description": "Start time of the browsing session",
+"data_type": "TIMESTAMP",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "session_end_time",
+"description": "End time of the browsing session",
+"data_type": "TIMESTAMP",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+* No additional relationships needed.
+
+
+
+## Question 7: 
+
+**How can I evaluate the hourly distribution of customer visits to our e-commerce platform to enhance targeted marketing strategies and improve user engagement?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "browsing_history_0",
+"table_description": "Tracks user browsing sessions and activities",
+"primary_key_column": [
+"session_id",
+"user_id"
+],
+"columns": [
+{
+"name": "session_id",
+"description": "Unique identifier for the session",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "user_id",
+"description": "Unique identifier for the user",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "session_start_time",
+"description": "Start time of the browsing session",
+"data_type": "TIMESTAMP",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+* No additional relationships needed.
+
+
+## Question 8:
+
+**How can I analyze customer purchase patterns during weekends and holidays to enhance targeted marketing strategies?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "order",
+"table_description": "Stores detailed records of customer orders",
+"primary_key_column": [
+"order_id",
+"order_item_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for the order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_id",
+"description": "Unique identifier for the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "total_amount",
+"description": "Total amount including taxes",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_category",
+"description": "Category of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "order",
+"FromColumn": [
+"product_id"
+],
+"ToTable": "product",
+"ToColumn": [
+"product_id"
+]
+}
+]
+```
+
+
+```json
+{
+"table_information": [
+{
+"table_name": "order",
+"table_description": "Stores detailed records of customer orders",
+"primary_key_column": [
+"order_id",
+"order_item_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for the order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "ship_date",
+"description": "Date when the order was shipped",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "delivery_date",
+"description": "Expected delivery date",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "total_amount",
+"description": "Total amount including taxes",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "country",
+"description": "Country of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "region",
+"description": "Region of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_category",
+"description": "Category of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "customer_service_fact",
+"table_description": "Tracks all customer service interactions",
+"primary_key_column": [
+"ticket_id",
+"customer_id"
+],
+"columns": [
+{
+"name": "ticket_id",
+"description": "Unique identifier for the ticket",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "created_date",
+"description": "Date the ticket was created",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "satisfaction_rating",
+"description": "Customer satisfaction rating",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "order",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+},
+{
+"FromTable": "order",
+"FromColumn": [
+"order_id"
+],
+"ToTable": "order_details",
+"ToColumn": [
+"order_id"
+]
+},
+{
+"FromTable": "order_details",
+"FromColumn": [
+"product_id"
+],
+"ToTable": "product",
+"ToColumn": [
+"product_id"
+]
+},
+{
+"FromTable": "customer_service_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+}
+]
+```
+
+
+## Question 10:
+
+**How can I identify customers from specific regions who have spent more than $500 in the last month and assess their satisfaction scores?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "country",
+"description": "Country of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "region",
+"description": "Region of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for each customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "total_price",
+"description": "Total price of the order",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+},
+{
+"table_name": "customer_service_fact",
+"table_description": "Tracks all customer service interactions",
+"primary_key_column": [
+"ticket_id",
+"customer_id"
+],
+"columns": [
+{
+"name": "ticket_id",
+"description": "Unique identifier for the ticket",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "created_date",
+"description": "Date the ticket was created",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "satisfaction_rating",
+"description": "Customer satisfaction rating",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+},
+{
+"FromTable": "customer_service_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+}
+]
+```
+
+
+## Question 11:
+
+**How can I identify products in specific categories that have experienced a price increase greater than 10% over the past year, and analyze their impact on sales volume and customer satisfaction?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_category",
+"description": "Category of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "price",
+"description": "Retail price of the product",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "quantity",
+"description": "Number of products ordered",
+"data_type": "INTEGER",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+},
+{
+"table_name": "customer_service_fact",
+"table_description": "Tracks all customer service interactions",
+"primary_key_column": [
+"ticket_id",
+"customer_id"
+],
+"columns": [
+{
+"name": "ticket_id",
+"description": "Unique identifier for the ticket",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "created_date",
+"description": "Date the ticket was created",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "satisfaction_rating",
+"description": "Customer satisfaction rating",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"product_id"
+],
+"ToTable": "product",
+"ToColumn": [
+"product_id"
+]
+},
+{
+"FromTable": "customer_service_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "sales_fact",
+"ToColumn": [
+"customer_id"
+]
+}
+]
+```
+
+
+## Question 12:
+
+**Can you help identify customers who have bought products from both the clothing and electronics categories, focusing on their purchase patterns and frequency over the last year across different regions?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "country",
+"description": "Country of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "region",
+"description": "Region of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_category",
+"description": "Category of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for each customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+},
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"product_id"
+],
+"ToTable": "product",
+"ToColumn": [
+"product_id"
+]
+}
+]
+```
+
+
+## Question 13:
+
+**How can I identify transactions where the quantity of a specific product exceeds the average quantity purchased across all products within a given time period?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "quantity",
+"description": "Number of products ordered",
+"data_type": "INTEGER",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+* No additional relationships needed.
+
+
+## Question 14:
+
+**How can I substitute missing shipping dates with corresponding order dates to enhance the accuracy of order processing analysis in an e-commerce setting?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "order",
+"table_description": "Stores detailed records of customer orders",
+"primary_key_column": [
+"order_id",
+"order_item_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for the order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "ship_date",
+"description": "Date when the order was shipped",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "Y"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+* No additional relationships needed.
+
+
+
+
+## Question 15:
+
+**How can I address missing data in the last login details of customers to accurately measure their engagement levels and interaction frequency on our e-commerce platform?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "last_login_date",
+"description": "Date of last login",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "Y"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+* No additional relationships needed.
+
+
+
+## Question 16:
+
+**How can we apply COALESCE to manage missing product descriptions in our online catalog, substituting them with 'No description available', to enhance the shopping experience and potentially increase conversion rates?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "description",
+"description": "Brief description of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "Y"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+* No additional relationships needed.
+
+
+## Question 17:
+
+**What is the most effective method to identify e-commerce transactions that lack essential data such as total sales amount or revenue?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "total_price",
+"description": "Total price of the order",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+* No additional relationships needed.
+
+
+```json
+{
+"table_information": [
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_category",
+"description": "Category of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for each customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "total_price",
+"description": "Total price of the order",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+},
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "country",
+"description": "Country of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "region",
+"description": "Region of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "browsing_history_0",
+"table_description": "Tracks user browsing sessions and activities",
+"primary_key_column": [
+"session_id",
+"user_id"
+],
+"columns": [
+{
+"name": "session_id",
+"description": "Unique identifier for the session",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "user_id",
+"description": "Unique identifier for the user",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "device_type",
+"description": "Type of device used for browsing",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [
+"Desktop",
+"Mobile",
+"Tablet"
+],
+"is_nullable": "N"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+},
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"product_id"
+],
+"ToTable": "product",
+"ToColumn": [
+"product_id"
+]
+},
+{
+"FromTable": "browsing_history_0",
+"FromColumn": [
+"user_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+}
+]
+```
+
+## Question 19:
+
+**How can we categorize customers by their average order value and total purchases across different geographic locations?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "country",
+"description": "Country of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "region",
+"description": "Region of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for each customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "total_price",
+"description": "Total price of the order",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+}
+]
+```
+
+
+
+## Question 20: 
+
+**How does the average order value per customer in their respective geographic regions compare to the regional average, utilizing a window function analysis?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "country",
+"description": "Country of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "region",
+"description": "Region of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for each customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "total_price",
+"description": "Total price of the order",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+}
+]
+```
+
+
+## Question 21:
+
+**How can I apply a window function to calculate the 30-day moving average of daily revenue, considering product categories and customer regions?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for each customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "total_price",
+"description": "Total price of the order",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+},
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_category",
+"description": "Category of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "country",
+"description": "Country of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "region",
+"description": "Region of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"product_id"
+],
+"ToTable": "product",
+"ToColumn": [
+"product_id"
+]
+},
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+}
+]
+```
+
+
+
+## Question 22:
+
+**How can we determine the top-performing products in terms of revenue within each product category, focusing on customer purchase patterns and product availability?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_category",
+"description": "Category of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "stock_quantity",
+"description": "Available stock quantity",
+"data_type": "INTEGER",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "customer_id",
+"description": "Unique identifier for each customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": []
+},
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "total_price",
+"description": "Total price of the order",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"product_id"
+],
+"ToTable": "product",
+"ToColumn": [
+"product_id"
+]
+}
+]
+```
+
+
+## Question 23:
+
+**Can you demonstrate how to compute the monthly percentage change in revenue for each category of products, comparing it with the prior month's performance?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "sales_fact",
+"table_description": "Records detailed sales transaction data",
+"primary_key_column": [
+"order_id",
+"product_id"
+],
+"columns": [
+{
+"name": "order_id",
+"description": "Unique identifier for each order",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "order_date",
+"description": "Date when the order was placed",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+},
+{
+"name": "total_price",
+"description": "Total price of the order",
+"data_type": "FLOAT",
+"format": "",
+"is_pii_column": "N",
+"enum": []
+}
+]
+},
+{
+"table_name": "product",
+"table_description": "Stores detailed information about products",
+"primary_key_column": [
+"product_id"
+],
+"columns": [
+{
+"name": "product_id",
+"description": "Unique identifier for each product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "product_category",
+"description": "Category of the product",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "sales_fact",
+"FromColumn": [
+"product_id"
+],
+"ToTable": "product",
+"ToColumn": [
+"product_id"
+]
+}
+]
+```
+
+
+
+## Question 24:
+
+**How can I calculate the month-over-month growth in the number of customers earning loyalty points, segmented by their membership status and geographic location?**
+
+**Expected Output**
+
+```json
+{
+"table_information": [
+{
+"table_name": "loyalty_program_0",
+"table_description": "Tracks customer loyalty program engagement",
+"primary_key_column": [
+"customer_id",
+"program_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for a customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "enrollment_date",
+"description": "Date of enrollment in the program",
+"data_type": "DATE",
+"format": "YYYY-MM-DD",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "membership_status",
+"description": "Current status of the membership",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [
+"Active",
+"Inactive",
+"Cancelled"
+],
+"is_nullable": "N"
+},
+{
+"name": "customer_region",
+"description": "Region where customer resides",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+},
+{
+"table_name": "customer_0",
+"table_description": "Stores detailed customer information and behavior",
+"primary_key_column": [
+"customer_id"
+],
+"columns": [
+{
+"name": "customer_id",
+"description": "Unique identifier for the customer",
+"data_type": "STRING",
+"format": "",
+"is_pii_column": "Y",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "country",
+"description": "Country of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+},
+{
+"name": "region",
+"description": "Region of the customer's address",
+"data_type": "STRING",
+"format": "UpperCase",
+"is_pii_column": "N",
+"enum": [],
+"is_nullable": "N"
+}
+]
+}
+]
+}
+```
+
+**Relationship**
+
+```json
+"relationships": [
+{
+"FromTable": "loyalty_program_0",
+"FromColumn": [
+"customer_id"
+],
+"ToTable": "customer_0",
+"ToColumn": [
+"customer_id"
+]
+}
+]
+```
+
+
