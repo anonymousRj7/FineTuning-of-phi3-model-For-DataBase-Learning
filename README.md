@@ -1,6 +1,5 @@
 # FineTuning-of-phi3-model-For-DataBase-Learning
 
-# I used two approach for finetuning the Model and 1st approach is giving good results
 
 # 1. Use the Synthetic data generation by generate the answer of question given  in format of expected output
 1.After generating the answer i make it into the format of finetuning of phi3 model
